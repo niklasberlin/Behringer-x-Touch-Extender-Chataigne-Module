@@ -1,12 +1,12 @@
 {
-	"name":"Mackie Universal",
+	"name":"Behringer X-Touch Extender",
 	"type":"MIDI",
 	"path":"Hardware",
 	
-	"version":"1.0.1",
-	"description":"Special MIDI Module for Mackie compatible controlers",
-	"url":"https://github.com/Guesn/Mackie-Control-Chataigne-Module",
-	"downloadURL":"https://github.com/Guesn/Mackie-Control-Chataigne-Module/archive/refs/heads/main.zip",
+	"version":"1.0.2",
+	"description":"Special MIDI Module for Behringer X-Touch Extender",
+	"url":"https://github.com/niklasberlin/Behringer-x-Touch-Extender-Chataigne-Module",
+	"downloadURL":"https://github.com/niklasberlin/Behringer-x-Touch-Extender-Chataigne-Module/archive/refs/heads/main.zip",
 	
 	"hasInput":true,
 	"hasOutput":true, 
@@ -41,7 +41,7 @@
 
 	"scripts":
 	[
-		"MackieUniversal.js"
+		"BehringerExtender.js"
 	],
 
 	"values":
