@@ -4,7 +4,7 @@
 	"path":"Hardware",
 	
 	"version":"1.0.2",
-	"description":"Special MIDI Module for Behringer X-Touch Extender",
+	"description":"MIDI Module for Behringer X-Touch Extender",
 	"url":"https://github.com/niklasberlin/Behringer-x-Touch-Extender-Chataigne-Module",
 	"downloadURL":"https://github.com/niklasberlin/Behringer-x-Touch-Extender-Chataigne-Module/archive/refs/heads/main.zip",
 	
@@ -60,6 +60,7 @@
 				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
+				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -76,6 +77,7 @@
 				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
+				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -92,6 +94,7 @@
 				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
+				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -108,6 +111,7 @@
 				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
+				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -124,6 +128,7 @@
 				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
+				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -140,6 +145,7 @@
 				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
+				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -156,6 +162,7 @@
 				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
+				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -172,6 +179,7 @@
 				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
+				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -181,111 +189,6 @@
 				"Rec": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}}
 			}
 
-		},
-		"Main":{
-			"type":"Container",
-			"collapsed":true,
-			"Flip":{"type":"Boolean", "readOnly":true},
-			"mainFader":{"type":"Float", "readOnly":true,"min":0,"max":1},
-			"mainTouch":{"type":"Boolean", "readOnly":true}
-		},
-		"Encoder_Assign":{
-			"type":"Container",
-			"collapsed":true,
-			"Track":{"type":"Boolean", "readOnly":true},
-			"Send":{"type":"Boolean", "readOnly":true},
-			"Pan":{"type":"Boolean", "readOnly":true},
-			"Plugin":{"type":"Boolean", "readOnly":true},
-			"EQ":{"type":"Boolean", "readOnly":true},
-			"Instrument":{"type":"Boolean", "readOnly":true}
-		},
-		"Display":{
-			"type":"Container",
-			"collapsed":true,
-			"Name_Value":{"type":"Boolean", "readOnly":true},
-			"SMPTE_Beats":{"type":"Boolean", "readOnly":true}
-		},
-		"Views":{
-			"type":"Container",
-			"collapsed":true,
-			"GlobalView":{"type":"Boolean", "readOnly":true},
-			"MidiTracks":{"type":"Boolean", "readOnly":true},
-			"Inputs":{"type":"Boolean", "readOnly":true},
-			"AudioTracks":{"type":"Boolean", "readOnly":true},
-			"AudioInst":{"type":"Boolean", "readOnly":true},
-			"Aux":{"type":"Boolean", "readOnly":true},
-			"Buses":{"type":"Boolean", "readOnly":true},
-			"Outputs":{"type":"Boolean", "readOnly":true},
-			"User":{"type":"Boolean", "readOnly":true}
-		},
-		"Functionnal":{
-			"type":"Container",
-			"collapsed":true,
-			"F1":{"type":"Boolean", "readOnly":true},
-			"F2":{"type":"Boolean", "readOnly":true},
-			"F3":{"type":"Boolean", "readOnly":true},
-			"F4":{"type":"Boolean", "readOnly":true},
-			"F5":{"type":"Boolean", "readOnly":true},
-			"F6":{"type":"Boolean", "readOnly":true},
-			"F7":{"type":"Boolean", "readOnly":true},
-			"F8":{"type":"Boolean", "readOnly":true}
-		},
-		"Modify":{
-			"type":"Container",
-			"collapsed":true,
-			"Shift":{"type":"Boolean", "readOnly":true},
-			"Option":{"type":"Boolean", "readOnly":true},
-			"Control":{"type":"Boolean", "readOnly":true},
-			"Alt":{"type":"Boolean", "readOnly":true}
-		},
-		"Automation":{
-			"type":"Container",
-			"collapsed":true,
-			"ReadOff":{"type":"Boolean", "readOnly":true},
-			"Write":{"type":"Boolean", "readOnly":true},
-			"Trim":{"type":"Boolean", "readOnly":true},
-			"Touch":{"type":"Boolean", "readOnly":true},
-			"Latch":{"type":"Boolean", "readOnly":true},
-			"Group":{"type":"Boolean", "readOnly":true}
-		},
-		"Utility":{
-			"type":"Container",
-			"collapsed":true,
-			"Save":{"type":"Boolean", "readOnly":true},
-			"Undo":{"type":"Boolean", "readOnly":true},
-			"Cancel":{"type":"Boolean", "readOnly":true},
-			"Enter":{"type":"Boolean", "readOnly":true}
-		},
-		"Transport":{
-			"type":"Container",
-			"collapsed":true,
-			"Marker":{"type":"Boolean", "readOnly":true},
-			"Nudge":{"type":"Boolean", "readOnly":true},
-			"Cycle":{"type":"Boolean", "readOnly":true},
-			"Drop":{"type":"Boolean", "readOnly":true},
-			"Replace":{"type":"Boolean", "readOnly":true},
-			"Click":{"type":"Boolean", "readOnly":true},
-			"Solo":{"type":"Boolean", "readOnly":true},
-			"Rewind":{"type":"Boolean", "readOnly":true},
-			"Forward":{"type":"Boolean", "readOnly":true},
-			"Stop":{"type":"Boolean", "readOnly":true},
-			"Play":{"type":"Boolean", "readOnly":true},
-			"RecSet":{"type":"Boolean", "readOnly":true}
-		},
-		"Misc":{
-			"type":"Container",
-			"collapsed":true,
-			"BankPrev":{"type":"Boolean", "readOnly":true},
-			"BankNext":{"type":"Boolean", "readOnly":true},
-			"ChanPrev":{"type":"Boolean", "readOnly":true},
-			"ChanNext":{"type":"Boolean", "readOnly":true},
-			"Up":{"type":"Boolean", "readOnly":true},
-			"Down":{"type":"Boolean", "readOnly":true},
-			"Left":{"type":"Boolean", "readOnly":true},
-			"Right":{"type":"Boolean", "readOnly":true},
-			"Zoom":{"type":"Boolean", "readOnly":true},
-			"Scrub":{"type":"Boolean", "readOnly":true},
-			"Wheel": {"type":"Float", "readOnly":true, "min":0, "max":1}
 		}
 	},
 	"commands":
