@@ -2,6 +2,11 @@
 A Chataigne module for Behringer X-Touch Extender, based on the Mackie-Universal-Chataigne-Module from Guesn.
 WIP
 
+Changelog 1.0.3 - First Code specific for Behringer X-Touch-Extender
+
+- removed further code from the universal Module
+- added code to send SysEx Messages to change the display Text and Color
+
 Changelog 1.0.2 - First Version of the Custom Module for the Behringer X-Touch Extender
 
 - removed actions not applicable to the X-Touch Extender
