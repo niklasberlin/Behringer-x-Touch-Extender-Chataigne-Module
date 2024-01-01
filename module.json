@@ -3,10 +3,10 @@
 	"type":"MIDI",
 	"path":"Hardware",
 	
-	"version":"1.0.2",
+	"version":"1.0.4",
 	"description":"MIDI Module for Behringer X-Touch Extender",
 	"url":"https://github.com/niklasberlin/Behringer-x-Touch-Extender-Chataigne-Module",
-	"downloadURL":"https://github.com/niklasberlin/Behringer-x-Touch-Extender-Chataigne-Module/archive/refs/tags/v1.0.2.zip",
+	"downloadURL":"https://github.com/niklasberlin/Behringer-x-Touch-Extender-Chataigne-Module/archive/master.zip",
 	
 	"hasInput":true,
 	"hasOutput":true, 
