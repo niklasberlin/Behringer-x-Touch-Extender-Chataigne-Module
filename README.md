@@ -2,6 +2,10 @@
 A Chataigne module for Behringer X-Touch Extender, based on the Mackie-Universal-Chataigne-Module from Guesn.
 WIP
 
+Changelog 1.0.4 - More Code cleanup
+
+- removed more code from the original Mackie Universal Module because it does not apply to the Behringer Extender
+
 Changelog 1.0.3 - First Code specific for Behringer X-Touch-Extender
 
 - removed further code from the universal Module
