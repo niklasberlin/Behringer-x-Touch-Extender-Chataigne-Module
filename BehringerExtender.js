@@ -161,7 +161,7 @@ function updateScribble()
 
 function updateScribleColor()
 {
-    colorArray = [];
+    colorArray = [0,0,0,0,0,0,0,0];
     for(counter=0;counter<8;counter++)
     {
         colorArray[counter] += parseInt(local.values.strips.getChild('Strip '+(counter+1)).displayColor.get());
