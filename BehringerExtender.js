@@ -12,6 +12,7 @@
     var deviceTicker = 0;//Used to init device with delay
     var counter = 0;//Used for loop iteration
     var stripArray = [];//Used to construct SysEx commands for scribble strip updates
+    var encoderArray = [];//Used to construct SysEx commands for scribble strip updates
     var olddevice;
     var assignArray = [];
         assignArray[0] = "track";
@@ -61,23 +62,26 @@ function init()
     //Send Assembled String Array to scribble strips
     //local.sendSysex(0x00,0x00,0x66,0x14,0x12,0x00,stripArray);
 
-    //Calculate Clock Values
-    UTCOffset = (yearSecs*1970) + (hourSecs*-2)+(minuteSecs*5) - 22;
-    UTCStamp = util.getTimestamp();
-    script.log(util.getTimestamp());
-    hours = Math.round(Math.floor((((UTCStamp+UTCOffset)%yearSecs)%daySecs)/hourSecs));
-    //Output Hours Digits
-    local.sendCC(1, 71, 48+Math.floor(Math.floor(hours%10)));
-    local.sendCC(1, 72, 48+Math.floor(Math.floor(hours/10)));
-    minutes = Math.round(Math.floor((((UTCStamp+UTCOffset)%yearSecs)%daySecs)%hourSecs/minuteSecs));
-    //Output Minutes Digits
-    local.sendCC(1, 69, 48+Math.floor(Math.floor(minutes%10)));
-    local.sendCC(1, 70, 48+Math.floor(Math.floor(minutes/10)));
-    seconds = Math.round(Math.floor(((((UTCStamp+UTCOffset)%yearSecs)%daySecs)%hourSecs)%minuteSecs));
-    //Output Seconds Digits
-    local.sendCC(1, 67, 48+Math.floor(Math.floor(seconds%10)));
-    local.sendCC(1, 68, 48+Math.floor(Math.floor(seconds/10)));
+    ////Calculate Clock Values
+    //UTCOffset = (yearSecs*1970) + (hourSecs*-2)+(minuteSecs*5) - 22;
+    //UTCStamp = util.getTimestamp();
+    //script.log(util.getTimestamp());
+    //hours = Math.round(Math.floor((((UTCStamp+UTCOffset)%yearSecs)%daySecs)/hourSecs));
+    ////Output Hours Digits
+    //local.sendCC(1, 71, 48+Math.floor(Math.floor(hours%10)));
+    //local.sendCC(1, 72, 48+Math.floor(Math.floor(hours/10)));
+    //minutes = Math.round(Math.floor((((UTCStamp+UTCOffset)%yearSecs)%daySecs)%hourSecs/minuteSecs));
+    ////Output Minutes Digits
+    //local.sendCC(1, 69, 48+Math.floor(Math.floor(minutes%10)));
+    //local.sendCC(1, 70, 48+Math.floor(Math.floor(minutes/10)));
+    //seconds = Math.round(Math.floor(((((UTCStamp+UTCOffset)%yearSecs)%daySecs)%hourSecs)%minuteSecs));
+    ////Output Seconds Digits
+    //local.sendCC(1, 67, 48+Math.floor(Math.floor(seconds%10)));
+    //local.sendCC(1, 68, 48+Math.floor(Math.floor(seconds/10)));
 
+    //remove tempo and mtc container because the behringer extender does not support those
+    local.values.removeContainer("tempo");
+    local.values.removeContainer("mtc");
 }
 
 
@@ -123,18 +127,40 @@ function init()
 //    local.sendSysex(0xF0,0x00,0x20,0x32,0x15,0x4C, stripIndex-1, cc, Text,0xF7);
 //}
 
+function fixedLengthString(stringInput, lengthInput)
+{
+    //returns a string of a fixed length, to long strings will be shortend, to short strings will be filled with additional whitespace
+    tmp =""+stringInput; //make sure we have a string object
+    if ((tmp.length)>lengthInput){
+        tmp=tmp.substring(0,lengthInput);
+    }else{
+        while(tmp.length<lengthInput){
+            tmp+=" ";
+        }
+    }
+    return tmp;
+}
+
 function updateStripArray()
 {
     for(counter=0;counter<8;counter++)
     {
-        stripArray[counter]=local.values.strips.getChild('Strip '+(counter+1)).faderName.get();
-        if ((stripArray[counter].length)>14){
-            stripArray[counter]=stripArray[counter].substring(0,14);
-        }else{
-            while((stripArray[counter].length)<14){
-                stripArray[counter]+=" ";
-            }
-        }
+        stripArray[counter]=fixedLengthString(local.values.strips.getChild('Strip '+(counter+1)).faderName.get(),14);
+        encoderArray[counter]=fixedLengthString(local.values.strips.getChild('Strip '+(counter+1)).encoderName.get(),14);
+        //if ((stripArray[counter].length)>14){
+        //    stripArray[counter]=stripArray[counter].substring(0,14);
+        //}else{
+        //    while((stripArray[counter].length)<14){
+        //        stripArray[counter]+=" ";
+        //    }
+        //}
+        //if ((encoderArray[counter].length)>14){
+        //    encoderArray[counter]=encoderArray[counter].substring(0,14);
+        //}else{
+        //    while((encoderArray[counter].length)<14){
+        //        encoderArray[counter]+=" ";
+        //    }
+        //}
     }
 }
 
@@ -142,6 +168,7 @@ function updateStripArray()
 //update scribbles in MC Mode
 function updateScribble()
 {
+    script.log("Scribbles Updated!");
     updateStripArray();
     //send first row:
     firstrow = "";
@@ -149,12 +176,38 @@ function updateScribble()
     for(counter=0;counter<8;counter++)
     {
         if(stripArray[counter].length!=14){
-            script.log("Error: Text legth does not match Display resolution!");
+            script.log("Error: StripText legth does not match Display resolution!");
             return;
         }
-        firstrow+=stripArray[counter].substring(0,7);
-        secondrow+=stripArray[counter].substring(7);
-    }
+        if(encoderArray[counter].length!=14){
+            script.log("Error: EncoderText legth does not match Display resolution!");
+            return;
+        }
+
+        if(local.values.strips.getChild('Strip '+(counter+1)).displayMode.get()==0){
+            //EFaderName
+            firstrow+=stripArray[counter].substring(0,7);
+            secondrow+=stripArray[counter].substring(7,14);
+        }else if (local.values.strips.getChild('Strip '+(counter+1)).displayMode.get()==1){
+            //EncoderName
+            firstrow+=encoderArray[counter].substring(0,7);
+            secondrow+=encoderArray[counter].substring(7,14);
+        }else if(local.values.strips.getChild('Strip '+(counter+1)).displayMode.get()==2){
+            //Split
+            firstrow+=encoderArray[counter].substring(0,7);
+            secondrow+=stripArray[counter].substring(0,7);
+        }else if(local.values.strips.getChild('Strip '+(counter+1)).displayMode.get()==3){
+            //FaderName + Value
+            firstrow+=stripArray[counter].substring(0,7);
+            tmp = " "+local.values.strips.getChild('Strip '+(counter+1)).faderValue.get();
+            secondrow+=fixedLengthString(tmp.substring(0,5),7);
+        }else if(local.values.strips.getChild('Strip '+(counter+1)).displayMode.get()==4){
+            //EncoderName + Value
+            firstrow+=encoderArray[counter].substring(0,7);
+            tmp = " "+local.values.strips.getChild('Strip '+(counter+1)).rotaryValue.get();
+            secondrow+=fixedLengthString(tmp.substring(0,5),7);
+        }
+    }           
     local.sendSysex(0x00, 0x00, 0x66, 0x15, 0x12, 0x00, firstrow);
     local.sendSysex(0x00, 0x00, 0x66, 0x15, 0x12, 0x38, secondrow);
 }
@@ -166,9 +219,7 @@ function updateScribleColor()
     {
         colorArray[counter] += parseInt(local.values.strips.getChild('Strip '+(counter+1)).displayColor.get());
     }
-    script.log("ColorArray:");
-    script.log(colorArray);
-    local.sendSysex(0x00, 0x00, 0x66, 0x15, 0x72, colorArray, 1);
+    local.sendSysex(0x00, 0x00, 0x66, 0x15, 0x72, colorArray);
 }
 
 function update(deltaTime)
@@ -277,6 +328,7 @@ function moduleParameterChanged(param)
 
 function moduleValueChanged(value)
 {
+    script.log(value.name);
     if(value.isParameter())
     {
         if(value.name=="faderValue"){
@@ -299,33 +351,34 @@ function moduleValueChanged(value)
                     }else{
                         if(value.name=="encoderName"){
                             // Update display with new encoder name
-                            var index = parseInt(value.getParent().name.substring(1,2))-1;
-                            var newLabel = value.get();
-                            var short = 7-newLabel.length;
-                            var i;
-                            for (i=0;i<short;i++){
-                                newLabel = newLabel+" ";
-                            }
-                            if(short>0){
-                                local.sendSysex(0x00,0x00,0x66,0x14,0x12,((index)*7),newLabel);
-                            }else{
-                                local.sendSysex(0x00,0x00,0x66,0x14,0x12,((index)*7),newLabel.substring(0,7));
-                            }
+                            //var index = parseInt(value.getParent().name.substring(1,2))-1;
+                            //var newLabel = value.get();
+                            //var short = 7-newLabel.length;
+                            //var i;
+                            //for (i=0;i<short;i++){
+                            //    newLabel = newLabel+" ";
+                            //}
+                            //if(short>0){
+                            //    local.sendSysex(0x00,0x00,0x66,0x14,0x12,((index)*7),newLabel);
+                            //}else{
+                            //    local.sendSysex(0x00,0x00,0x66,0x14,0x12,((index)*7),newLabel.substring(0,7));
+                            //}
                             init();
                         }else{
                             if(value.name=="faderName"){
-                                var index = parseInt(value.getParent().name.substring(1,2))-1;
-                                var newLabel = value.get();
-                                var short = 7-newLabel.length;
-                                var i;
-                                for (i=0;i<short;i++){
-                                    newLabel = newLabel+" ";
-                                }
-                                if(short>0){
-                                    local.sendSysex(0x00,0x00,0x66,0x14,0x12,((index)*7+56),newLabel);
-                                }else{
-                                    local.sendSysex(0x00,0x00,0x66,0x14,0x12,((index)*7)+56,newLabel.substring(0,7));
-                                }
+                                //var index = parseInt(value.getParent().name.substring(1,2))-1;
+                                //var newLabel = value.get();
+                                //var short = 7-newLabel.length;
+                                //var i;
+                                //for (i=0;i<short;i++){
+                                //    newLabel = newLabel+" ";
+                                //}
+                                //if(short>0){
+                                //    local.sendSysex(0x00,0x00,0x66,0x14,0x12,((index)*7+56),newLabel);
+                                //}else{
+                                //    local.sendSysex(0x00,0x00,0x66,0x14,0x12,((index)*7)+56,newLabel.substring(0,7));
+                                //}
+                                updateScribble();
                                 init();
                             }else{
                                 if(value.name=="solo"){
@@ -339,6 +392,10 @@ function moduleValueChanged(value)
                                         }else{
                                             if(value.name=="displayColor"){
                                                 updateScribleColor();
+                                            }else{
+                                                if(value.name=="displayMode"){
+                                                    updateScribble();
+                                                }
                                             }
                                         }
                                     }
@@ -403,10 +460,12 @@ function noteOnEvent(channel, pitch, velocity)
     }
 
     //Is it a fader touch?
-    if (pitch >= 104 && pitch <= 111 && local.parameters.flashOnTouched.get()){
+    if (pitch >= 104 && pitch <= 111){
         var index = pitch-104;
         local.values.strips.getChild('Strip '+(index+1)).touch.set(true);
-        local.values.strips.getChild('Strip '+(index+1)).select.set("flash");
+        if (local.parameters.flashOnTouched.get()){
+            local.values.strips.getChild('Strip '+(index+1)).select.set("flash");
+        }
     }
 
 }
@@ -449,20 +508,24 @@ function ccEvent(channel, number, value)
             //Add value to rotaryValueue
             local.values.strips.getChild('Strip '+(index+1)).rotaryValue.set(local.values.strips.getChild('Strip '+(index+1)).rotaryValue.get()+(value/256));
         }
+        updateScribble();
     }
 }
 
 //Upon receiving MIDI PitchWheel message (only fader values)
 function pitchWheelEvent(channel,value){
     //Is Master fader?
+    script.log("received value");
+    script.log(value);
     if(channel==9){
-        local.values.main.mainFader.set(value/16383);
+        local.values.main.mainFader.set(value/16380);
         local.sendPitchWheel(channel,value);
     }
     //It's a strip fader
     else{
         //Update strip module with new value
-        local.values.strips.getChild('Strip '+channel).faderValue.set(value/16383);
+        local.values.strips.getChild('Strip '+channel).faderValue.set(value/16380);
+        updateScribble();
     }
 }
 
@@ -470,4 +533,25 @@ function pitchWheelEvent(channel,value){
 function sysExEvent(data)
 {
     //script.log("Sysex Message received, "+data.length+" bytes :");
+}
+
+
+function setBGColor(stripIndex, ColorIndex)
+{ //needs to be exposed to the userinterface
+    local.values.strips.getChild('Strip '+(stripIndex)).displayColor.set(ColorIndex);
+}
+
+function ResetDevice()
+{
+    for(counter=0;counter<8;counter++)
+    {
+        //script.log("counter: "+counter);
+        //script.log(typeof(local.values.strips.getChild('Strip '+(counter+1)).displayColor));
+        //script.log("current Color:" + local.values.strips.getChild('Strip '+(counter+1)).displayColor.getKey());
+        //local.values.strips.getChild('Strip '+(counter+1)).displayColor.setData("0");
+        local.values.strips.getChild('Strip '+(counter+1)).encoderName.set("");
+        local.values.strips.getChild('Strip '+(counter+1)).faderName.set("");
+        local.values.strips.getChild('Strip '+(counter+1)).faderValue.set(0);
+        local.values.strips.getChild('Strip '+(counter+1)).rotaryValue.set(0);
+    }
 }

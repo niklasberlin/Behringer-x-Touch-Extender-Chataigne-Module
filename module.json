@@ -20,22 +20,22 @@
 		"type":"Container",
 		"FlashOnTouched":{"type":"Boolean"},
 		"FlashOnSolo":{"type":"Boolean"},
-		"stripIndex":{"type":"Integer", "min":0,"max":8},
-		"bankIndex":{"type":"Integer", "min":0},
-		"ActiveView": {"type":"Enum", "options": {"MidiTracks":0, "Inputs":1, "AudioTracks":2, "AudioInst":3, "Aux":4, "Buses":5, "Output":6, "User":7}},
-		"EncodersAssign": {"type":"Enum", "options": {"Track":0, "Pan/Surround":1, "EQ":2, "Send":3, "Plug-in":4, "Inst":5}}
+		"stripIndex":{"type":"Integer", "min":0,"max":8}
 	},
 
 	"defaults":
 	{		
-		"devices":["X-Touch", "X-Touch"],
+		"devices":["X-Touch-Ext", "X-Touch-Ext"],
 		"autoAdd":false
 	},
 
 	"hideDefaultParameters":
 	[
 		"autoAdd",
-		"autoFeedback"
+		"autoFeedback",
+		"octaveShift",
+		"usePitchForNoteNames",
+		"useHierarchy"
 	],
 
 
@@ -47,11 +47,9 @@
 	"values":
 	{
 		"type":"Container",
-		
-		
 		"Strips":{
 			"type":"Container",
-			"collapsed":true,
+			"collapsed":false,
 			"Strip 1":{
 				"type":"Container",
 				"collapsed":true,
@@ -61,6 +59,7 @@
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
 				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
+				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -78,6 +77,7 @@
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
 				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
+				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -95,6 +95,7 @@
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
 				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
+				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -112,6 +113,7 @@
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
 				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
+				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -129,6 +131,7 @@
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
 				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
+				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -146,6 +149,7 @@
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
 				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
+				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -163,6 +167,7 @@
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
 				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
+				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
@@ -180,6 +185,7 @@
 				"FaderName": {"type":"String"},
 				"FaderValue":   { "type":"Float", "min":0,"max":1},
 				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
+				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
 				"Touch": {"type":"Boolean", "readOnly":true},
 				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
 				"Push": {"type":"Boolean", "readOnly":true},
