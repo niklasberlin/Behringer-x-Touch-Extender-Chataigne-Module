@@ -328,7 +328,7 @@ function moduleParameterChanged(param)
 
 function moduleValueChanged(value)
 {
-    script.log(value.name);
+    //script.log(value.name);
     if(value.isParameter())
     {
         if(value.name=="faderValue"){
@@ -515,8 +515,8 @@ function ccEvent(channel, number, value)
 //Upon receiving MIDI PitchWheel message (only fader values)
 function pitchWheelEvent(channel,value){
     //Is Master fader?
-    script.log("received value");
-    script.log(value);
+    //script.log("received value");
+    //script.log(value);
     if(channel==9){
         local.values.main.mainFader.set(value/16380);
         local.sendPitchWheel(channel,value);
@@ -543,15 +543,27 @@ function setBGColor(stripIndex, ColorIndex)
 
 function ResetDevice()
 {
-    for(counter=0;counter<8;counter++)
+    for(c=0;c<8;c++)
     {
         //script.log("counter: "+counter);
         //script.log(typeof(local.values.strips.getChild('Strip '+(counter+1)).displayColor));
         //script.log("current Color:" + local.values.strips.getChild('Strip '+(counter+1)).displayColor.getKey());
-        //local.values.strips.getChild('Strip '+(counter+1)).displayColor.setData("0");
-        local.values.strips.getChild('Strip '+(counter+1)).encoderName.set("");
-        local.values.strips.getChild('Strip '+(counter+1)).faderName.set("");
-        local.values.strips.getChild('Strip '+(counter+1)).faderValue.set(0);
-        local.values.strips.getChild('Strip '+(counter+1)).rotaryValue.set(0);
+        local.values.strips.getChild('Strip '+(c+1)).displayColor.setData("0");
+        script.log("resetting strip "+(c+1)+"");
+
+        local.values.strips.getChild('Strip '+(c+1)).encoderName.set("");
+        local.values.strips.getChild('Strip '+(c+1)).faderName.set("");
+        local.values.strips.getChild('Strip '+(c+1)).faderValue.set(0);
+        local.values.strips.getChild('Strip '+(c+1)).rotaryValue.set(0);
     }
+}
+
+function setRotaryValue(strip, input)
+{
+    local.values.strips.getChild('Strip '+strip).rotaryValue.set(input);
+}
+
+function setFaderValue(strip, input)
+{
+    local.values.strips.getChild('Strip '+strip).faderValue.set(input);
 }
