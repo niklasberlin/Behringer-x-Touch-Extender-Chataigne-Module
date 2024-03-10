@@ -563,7 +563,15 @@ function setRotaryValue(strip, input)
     local.values.strips.getChild('Strip '+strip).rotaryValue.set(input);
 }
 
-function setFaderValue(strip, input)
+function map(val, inputstart, inputend, outputstart, outputend)
 {
+    return val/inputend;
+}
+
+function setFaderValue(strip, input, rangeStart, rangeEnd)
+{
+    //rangeStart=0;
+    //rangeEnd=100;
+    //inp = map(input,rangeStart,rangeEnd,0,1);
     local.values.strips.getChild('Strip '+strip).faderValue.set(input);
 }
