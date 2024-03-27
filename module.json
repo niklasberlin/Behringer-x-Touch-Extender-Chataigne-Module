@@ -242,6 +242,25 @@
 					"default":0
 				}
 			}
+		},
+	"setFaderName":
+		{
+			"menu":"",  
+			"callback":"setFaderName",
+			"parameters":
+			{	
+				"Strip":
+				{
+					"type":"Integer",
+					"min":1,
+					"max":8,
+					"default":1
+				},
+				"Input Value":
+				{
+					"type":"String"
+				}
+			}
 		}
 	}
 }
