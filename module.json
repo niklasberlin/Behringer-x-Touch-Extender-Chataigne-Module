@@ -972,6 +972,21 @@
 					"type": "String"
 				}
 			}
+		},
+		"setEncoderName": {
+			"menu": "",
+			"callback": "setEncoderName",
+			"parameters": {
+				"Strip": {
+					"type": "Integer",
+					"min": 1,
+					"max": 8,
+					"default": 1
+				},
+				"Input Value": {
+					"type": "String"
+				}
+			}
 		}
 	}
 }

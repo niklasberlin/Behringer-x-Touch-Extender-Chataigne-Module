@@ -763,9 +763,9 @@ function setFaderName(strip, input) {
   local.values.strips.getChild("Strip " + strip).faderName.set(input);
 }
 
-//function setRotaryName(strip, input) {
-//  //rangeStart=0;
-//  //rangeEnd=100;
-//  //inp = map(input,rangeStart,rangeEnd,0,1);
-//  local.values.strips.getChild("Strip " + strip).rotaryName.set(input);
-//}
+function setEncoderName(strip, input) {
+  //rangeStart=0;
+  //rangeEnd=100;
+  //inp = map(input,rangeStart,rangeEnd,0,1);
+  local.values.strips.getChild("Strip " + strip).encoderName.set(input);
+}
