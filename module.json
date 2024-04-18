@@ -1,264 +1,975 @@
 {
-	"name":"Behringer X-Touch Extender",
-	"type":"MIDI",
-	"path":"Hardware",
-	
-	"version":"0.1.0",
-	"description":"BETA - MIDI Module for Behringer X-Touch Extender, functions might change without prior notice, most stuff should work",
-	"url":"https://github.com/niklasberlin/Behringer-x-Touch-Extender-Chataigne-Module",
-	"downloadURL":"https://github.com/niklasberlin/Behringer-x-Touch-Extender-Chataigne-Module/archive/master.zip",
-	
-	"hasInput":true,
-	"hasOutput":true, 
-
-	"hideDefaultCommands":true,
-
-
-
-	"parameters":
-	{
-		"type":"Container",
-		"FlashOnTouched":{"type":"Boolean"},
-		"FlashOnSolo":{"type":"Boolean"},
-		"stripIndex":{"type":"Integer", "min":0,"max":8}
+	"name": "Behringer X-Touch Extender",
+	"type": "MIDI",
+	"path": "Hardware",
+	"version": "0.1.0",
+	"description": "BETA - MIDI Module for Behringer X-Touch Extender, functions might change without prior notice, most stuff should work",
+	"url": "https://github.com/niklasberlin/Behringer-x-Touch-Extender-Chataigne-Module",
+	"downloadURL": "https://github.com/niklasberlin/Behringer-x-Touch-Extender-Chataigne-Module/archive/master.zip",
+	"hasInput": true,
+	"hasOutput": true,
+	"hideDefaultCommands": true,
+	"parameters": {
+		"type": "Container",
+		"FlashOnTouched": {
+			"type": "Boolean"
+		},
+		"FlashOnSolo": {
+			"type": "Boolean"
+		},
+		"stripIndex": {
+			"type": "Integer",
+			"min": 0,
+			"max": 8
+		}
 	},
-
-	"defaults":
-	{		
-		"devices":["X-Touch-Ext", "X-Touch-Ext"],
-		"autoAdd":false
+	"defaults": {
+		"devices": [
+			"X-Touch-Ext",
+			"X-Touch-Ext"
+		],
+		"autoAdd": false
 	},
-
-	"hideDefaultParameters":
-	[
+	"hideDefaultParameters": [
 		"autoAdd",
 		"autoFeedback",
 		"octaveShift",
 		"usePitchForNoteNames",
 		"useHierarchy"
 	],
-
-
-	"scripts":
-	[
+	"scripts": [
 		"BehringerExtender.js"
 	],
-
-	"values":
-	{
-		"type":"Container",
-		"Strips":{
-			"type":"Container",
-			"collapsed":false,
-			"Strip 1":{
-				"type":"Container",
-				"collapsed":false,
-				"EncoderName": {"type":"String"},
-				"RotaryValue": {"type":"Float", "readOnly":true, "min":0, "max":1},
-				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
-				"FaderName": {"type":"String"},
-				"FaderValue":   { "type":"Float", "min":0,"max":1},
-				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
-				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
-				"Touch": {"type":"Boolean", "readOnly":true},
-				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
-				"Push": {"type":"Boolean", "readOnly":true},
-				"Select": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Mute": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Solo": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Rec": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}}
+	"values": {
+		"type": "Container",
+		"Strips": {
+			"type": "Container",
+			"collapsed": false,
+			"Strip 1": {
+				"type": "Container",
+				"collapsed": false,
+				"EncoderName": {
+					"type": "String"
+				},
+				"RotaryValue": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"RotaryMode": {
+					"type": "Enum",
+					"options": {
+						"Single": 1,
+						"BoostCut": 17,
+						"Wrap": 33,
+						"Spread": 49,
+						"Single2": 65,
+						"BoostCut2": 81,
+						"Wrap2": 97,
+						"Spread2": 113
+					}
+				},
+				"FaderName": {
+					"type": "String"
+				},
+				"FaderValue": {
+					"type": "Float",
+					"min": 0,
+					"max": 1
+				},
+				"DisplayColor": {
+					"type": "Enum",
+					"options": {
+						"Black": 0,
+						"Red": 1,
+						"Green": 2,
+						"Yellow": 3,
+						"Blue": 4,
+						"Magenta": 5,
+						"Cyan": 6,
+						"White": 7
+					}
+				},
+				"DisplayMode": {
+					"type": "Enum",
+					"options": {
+						"FaderName": 0,
+						"EncoderName": 1,
+						"Split": 2,
+						"FaderName + Value": 3,
+						"EncoderName + Value": 4
+					}
+				},
+				"Touch": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Meter": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"Push": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Select": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Mute": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Solo": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Rec": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				}
 			},
-			"Strip 2":{
-				"type":"Container",
-				"collapsed":true,
-				"EncoderName": {"type":"String"},
-				"RotaryValue": {"type":"Float", "readOnly":true, "min":0, "max":1},
-				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
-				"FaderName": {"type":"String"},
-				"FaderValue":   { "type":"Float", "min":0,"max":1},
-				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
-				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
-				"Touch": {"type":"Boolean", "readOnly":true},
-				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
-				"Push": {"type":"Boolean", "readOnly":true},
-				"Select": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Mute": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Solo": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Rec": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}}
+			"Strip 2": {
+				"type": "Container",
+				"collapsed": true,
+				"EncoderName": {
+					"type": "String"
+				},
+				"RotaryValue": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"RotaryMode": {
+					"type": "Enum",
+					"options": {
+						"Single": 1,
+						"BoostCut": 17,
+						"Wrap": 33,
+						"Spread": 49,
+						"Single2": 65,
+						"BoostCut2": 81,
+						"Wrap2": 97,
+						"Spread2": 113
+					}
+				},
+				"FaderName": {
+					"type": "String"
+				},
+				"FaderValue": {
+					"type": "Float",
+					"min": 0,
+					"max": 1
+				},
+				"DisplayColor": {
+					"type": "Enum",
+					"options": {
+						"Black": 0,
+						"Red": 1,
+						"Green": 2,
+						"Yellow": 3,
+						"Blue": 4,
+						"Magenta": 5,
+						"Cyan": 6,
+						"White": 7
+					}
+				},
+				"DisplayMode": {
+					"type": "Enum",
+					"options": {
+						"FaderName": 0,
+						"EncoderName": 1,
+						"Split": 2,
+						"FaderName + Value": 3,
+						"EncoderName + Value": 4
+					}
+				},
+				"Touch": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Meter": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"Push": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Select": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Mute": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Solo": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Rec": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				}
 			},
-			"Strip 3":{
-				"type":"Container",
-				"collapsed":true,
-				"EncoderName": {"type":"String"},
-				"RotaryValue": {"type":"Float", "readOnly":true, "min":0, "max":1},
-				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
-				"FaderName": {"type":"String"},
-				"FaderValue":   { "type":"Float", "min":0,"max":1},
-				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
-				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
-				"Touch": {"type":"Boolean", "readOnly":true},
-				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
-				"Push": {"type":"Boolean", "readOnly":true},
-				"Select": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Mute": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Solo": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Rec": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}}
+			"Strip 3": {
+				"type": "Container",
+				"collapsed": true,
+				"EncoderName": {
+					"type": "String"
+				},
+				"RotaryValue": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"RotaryMode": {
+					"type": "Enum",
+					"options": {
+						"Single": 1,
+						"BoostCut": 17,
+						"Wrap": 33,
+						"Spread": 49,
+						"Single2": 65,
+						"BoostCut2": 81,
+						"Wrap2": 97,
+						"Spread2": 113
+					}
+				},
+				"FaderName": {
+					"type": "String"
+				},
+				"FaderValue": {
+					"type": "Float",
+					"min": 0,
+					"max": 1
+				},
+				"DisplayColor": {
+					"type": "Enum",
+					"options": {
+						"Black": 0,
+						"Red": 1,
+						"Green": 2,
+						"Yellow": 3,
+						"Blue": 4,
+						"Magenta": 5,
+						"Cyan": 6,
+						"White": 7
+					}
+				},
+				"DisplayMode": {
+					"type": "Enum",
+					"options": {
+						"FaderName": 0,
+						"EncoderName": 1,
+						"Split": 2,
+						"FaderName + Value": 3,
+						"EncoderName + Value": 4
+					}
+				},
+				"Touch": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Meter": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"Push": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Select": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Mute": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Solo": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Rec": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				}
 			},
-			"Strip 4":{
-				"type":"Container",
-				"collapsed":true,
-				"EncoderName": {"type":"String"},
-				"RotaryValue": {"type":"Float", "readOnly":true, "min":0, "max":1},
-				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
-				"FaderName": {"type":"String"},
-				"FaderValue":   { "type":"Float", "min":0,"max":1},
-				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
-				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
-				"Touch": {"type":"Boolean", "readOnly":true},
-				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
-				"Push": {"type":"Boolean", "readOnly":true},
-				"Select": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Mute": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Solo": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Rec": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}}
+			"Strip 4": {
+				"type": "Container",
+				"collapsed": true,
+				"EncoderName": {
+					"type": "String"
+				},
+				"RotaryValue": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"RotaryMode": {
+					"type": "Enum",
+					"options": {
+						"Single": 1,
+						"BoostCut": 17,
+						"Wrap": 33,
+						"Spread": 49,
+						"Single2": 65,
+						"BoostCut2": 81,
+						"Wrap2": 97,
+						"Spread2": 113
+					}
+				},
+				"FaderName": {
+					"type": "String"
+				},
+				"FaderValue": {
+					"type": "Float",
+					"min": 0,
+					"max": 1
+				},
+				"DisplayColor": {
+					"type": "Enum",
+					"options": {
+						"Black": 0,
+						"Red": 1,
+						"Green": 2,
+						"Yellow": 3,
+						"Blue": 4,
+						"Magenta": 5,
+						"Cyan": 6,
+						"White": 7
+					}
+				},
+				"DisplayMode": {
+					"type": "Enum",
+					"options": {
+						"FaderName": 0,
+						"EncoderName": 1,
+						"Split": 2,
+						"FaderName + Value": 3,
+						"EncoderName + Value": 4
+					}
+				},
+				"Touch": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Meter": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"Push": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Select": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Mute": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Solo": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Rec": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				}
 			},
-			"Strip 5":{
-				"type":"Container",
-				"collapsed":true,
-				"EncoderName": {"type":"String"},
-				"RotaryValue": {"type":"Float", "readOnly":true, "min":0, "max":1},
-				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
-				"FaderName": {"type":"String"},
-				"FaderValue":   { "type":"Float", "min":0,"max":1},
-				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
-				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
-				"Touch": {"type":"Boolean", "readOnly":true},
-				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
-				"Push": {"type":"Boolean", "readOnly":true},
-				"Select": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Mute": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Solo": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Rec": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}}
+			"Strip 5": {
+				"type": "Container",
+				"collapsed": true,
+				"EncoderName": {
+					"type": "String"
+				},
+				"RotaryValue": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"RotaryMode": {
+					"type": "Enum",
+					"options": {
+						"Single": 1,
+						"BoostCut": 17,
+						"Wrap": 33,
+						"Spread": 49,
+						"Single2": 65,
+						"BoostCut2": 81,
+						"Wrap2": 97,
+						"Spread2": 113
+					}
+				},
+				"FaderName": {
+					"type": "String"
+				},
+				"FaderValue": {
+					"type": "Float",
+					"min": 0,
+					"max": 1
+				},
+				"DisplayColor": {
+					"type": "Enum",
+					"options": {
+						"Black": 0,
+						"Red": 1,
+						"Green": 2,
+						"Yellow": 3,
+						"Blue": 4,
+						"Magenta": 5,
+						"Cyan": 6,
+						"White": 7
+					}
+				},
+				"DisplayMode": {
+					"type": "Enum",
+					"options": {
+						"FaderName": 0,
+						"EncoderName": 1,
+						"Split": 2,
+						"FaderName + Value": 3,
+						"EncoderName + Value": 4
+					}
+				},
+				"Touch": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Meter": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"Push": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Select": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Mute": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Solo": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Rec": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				}
 			},
-			"Strip 6":{
-				"type":"Container",
-				"collapsed":true,
-				"EncoderName": {"type":"String"},
-				"RotaryValue": {"type":"Float", "readOnly":true, "min":0, "max":1},
-				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
-				"FaderName": {"type":"String"},
-				"FaderValue":   { "type":"Float", "min":0,"max":1},
-				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
-				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
-				"Touch": {"type":"Boolean", "readOnly":true},
-				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
-				"Push": {"type":"Boolean", "readOnly":true},
-				"Select": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Mute": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Solo": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Rec": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}}
+			"Strip 6": {
+				"type": "Container",
+				"collapsed": true,
+				"EncoderName": {
+					"type": "String"
+				},
+				"RotaryValue": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"RotaryMode": {
+					"type": "Enum",
+					"options": {
+						"Single": 1,
+						"BoostCut": 17,
+						"Wrap": 33,
+						"Spread": 49,
+						"Single2": 65,
+						"BoostCut2": 81,
+						"Wrap2": 97,
+						"Spread2": 113
+					}
+				},
+				"FaderName": {
+					"type": "String"
+				},
+				"FaderValue": {
+					"type": "Float",
+					"min": 0,
+					"max": 1
+				},
+				"DisplayColor": {
+					"type": "Enum",
+					"options": {
+						"Black": 0,
+						"Red": 1,
+						"Green": 2,
+						"Yellow": 3,
+						"Blue": 4,
+						"Magenta": 5,
+						"Cyan": 6,
+						"White": 7
+					}
+				},
+				"DisplayMode": {
+					"type": "Enum",
+					"options": {
+						"FaderName": 0,
+						"EncoderName": 1,
+						"Split": 2,
+						"FaderName + Value": 3,
+						"EncoderName + Value": 4
+					}
+				},
+				"Touch": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Meter": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"Push": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Select": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Mute": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Solo": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Rec": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				}
 			},
-			"Strip 7":{
-				"type":"Container",
-				"collapsed":true,
-				"EncoderName": {"type":"String"},
-				"RotaryValue": {"type":"Float", "readOnly":true, "min":0, "max":1},
-				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
-				"FaderName": {"type":"String"},
-				"FaderValue":   { "type":"Float", "min":0,"max":1},
-				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
-				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
-				"Touch": {"type":"Boolean", "readOnly":true},
-				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
-				"Push": {"type":"Boolean", "readOnly":true},
-				"Select": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Mute": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Solo": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Rec": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}}
+			"Strip 7": {
+				"type": "Container",
+				"collapsed": true,
+				"EncoderName": {
+					"type": "String"
+				},
+				"RotaryValue": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"RotaryMode": {
+					"type": "Enum",
+					"options": {
+						"Single": 1,
+						"BoostCut": 17,
+						"Wrap": 33,
+						"Spread": 49,
+						"Single2": 65,
+						"BoostCut2": 81,
+						"Wrap2": 97,
+						"Spread2": 113
+					}
+				},
+				"FaderName": {
+					"type": "String"
+				},
+				"FaderValue": {
+					"type": "Float",
+					"min": 0,
+					"max": 1
+				},
+				"DisplayColor": {
+					"type": "Enum",
+					"options": {
+						"Black": 0,
+						"Red": 1,
+						"Green": 2,
+						"Yellow": 3,
+						"Blue": 4,
+						"Magenta": 5,
+						"Cyan": 6,
+						"White": 7
+					}
+				},
+				"DisplayMode": {
+					"type": "Enum",
+					"options": {
+						"FaderName": 0,
+						"EncoderName": 1,
+						"Split": 2,
+						"FaderName + Value": 3,
+						"EncoderName + Value": 4
+					}
+				},
+				"Touch": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Meter": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"Push": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Select": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Mute": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Solo": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Rec": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				}
 			},
-			"Strip 8":{
-				"type":"Container",
-				"collapsed":true,
-				"EncoderName": {"type":"String"},
-				"RotaryValue": {"type":"Float", "readOnly":true, "min":0, "max":1},
-				"RotaryMode": {"type":"Enum", "options": {"Single":1, "BoostCut":17, "Wrap":33, "Spread":49, "Single2":65, "BoostCut2":81,"Wrap2":97,"Spread2":113}},
-				"FaderName": {"type":"String"},
-				"FaderValue":   { "type":"Float", "min":0,"max":1},
-				"DisplayColor": {"type":"Enum", "options": {"Black":0, "Red":1, "Green":2, "Yellow":3, "Blue":4, "Magenta":5, "Cyan":6, "White":7}},
-				"DisplayMode": {"type":"Enum","options":{"FaderName":0, "EncoderName":1,"Split":2, "FaderName + Value":3, "EncoderName + Value":4}},
-				"Touch": {"type":"Boolean", "readOnly":true},
-				"Meter":  { "type":"Float", "readOnly":true, "min":0,"max":1},
-				"Push": {"type":"Boolean", "readOnly":true},
-				"Select": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Mute": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Solo": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}},
-				"Rec": {"type":"Enum", "readOnly":true, "options": {"off":0, "flash":1, "on":127}}
+			"Strip 8": {
+				"type": "Container",
+				"collapsed": true,
+				"EncoderName": {
+					"type": "String"
+				},
+				"RotaryValue": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"RotaryMode": {
+					"type": "Enum",
+					"options": {
+						"Single": 1,
+						"BoostCut": 17,
+						"Wrap": 33,
+						"Spread": 49,
+						"Single2": 65,
+						"BoostCut2": 81,
+						"Wrap2": 97,
+						"Spread2": 113
+					}
+				},
+				"FaderName": {
+					"type": "String"
+				},
+				"FaderValue": {
+					"type": "Float",
+					"min": 0,
+					"max": 1
+				},
+				"DisplayColor": {
+					"type": "Enum",
+					"options": {
+						"Black": 0,
+						"Red": 1,
+						"Green": 2,
+						"Yellow": 3,
+						"Blue": 4,
+						"Magenta": 5,
+						"Cyan": 6,
+						"White": 7
+					}
+				},
+				"DisplayMode": {
+					"type": "Enum",
+					"options": {
+						"FaderName": 0,
+						"EncoderName": 1,
+						"Split": 2,
+						"FaderName + Value": 3,
+						"EncoderName + Value": 4
+					}
+				},
+				"Touch": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Meter": {
+					"type": "Float",
+					"readOnly": true,
+					"min": 0,
+					"max": 1
+				},
+				"Push": {
+					"type": "Boolean",
+					"readOnly": true
+				},
+				"Select": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Mute": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Solo": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				},
+				"Rec": {
+					"type": "Enum",
+					"readOnly": true,
+					"options": {
+						"off": 0,
+						"flash": 1,
+						"on": 127
+					}
+				}
 			}
-
 		}
 	},
-	"commands":
-	{
-		"setRotary":
-		{
-			"menu":"",  
-			"callback":"setRotaryValue",
-			"parameters":
-			{	
-				"Strip":
-				{
-					"type":"Integer",
-					"min":1,
-					"max":8,
-					"default":1
+	"commands": {
+		"setRotary": {
+			"menu": "",
+			"callback": "setRotaryValue",
+			"parameters": {
+				"Strip": {
+					"type": "Integer",
+					"min": 1,
+					"max": 8,
+					"default": 1
 				},
-				"Input Value":
-				{
-					"type":"Float",
-					"min":0,
-					"max":1,
-					"default":0
+				"Input Value": {
+					"type": "Float",
+					"min": 0,
+					"max": 1,
+					"default": 0
 				}
 			}
 		},
-	"setFader":
-		{
-			"menu":"",  
-			"callback":"setFaderValue",
-			"parameters":
-			{	
-				"Strip":
-				{
-					"type":"Integer",
-					"min":1,
-					"max":8,
-					"default":1
+		"setFader": {
+			"menu": "",
+			"callback": "setFaderValue",
+			"parameters": {
+				"Strip": {
+					"type": "Integer",
+					"min": 1,
+					"max": 8,
+					"default": 1
 				},
-				"Input Value":
-				{
-					"type":"Float",
-					"min":0,
-					"max":1,
-					"default":0
+				"Input Value": {
+					"type": "Float",
+					"min": 0,
+					"max": 1,
+					"default": 0
 				}
 			}
 		},
-	"setFaderName":
-		{
-			"menu":"",  
-			"callback":"setFaderName",
-			"parameters":
-			{	
-				"Strip":
-				{
-					"type":"Integer",
-					"min":1,
-					"max":8,
-					"default":1
+		"setVuMeter": {
+			"menu": "",
+			"callback": "setVuMeterValue",
+			"parameters": {
+				"Strip": {
+					"type": "Integer",
+					"min": 1,
+					"max": 8,
+					"default": 1
 				},
-				"Input Value":
-				{
-					"type":"String"
+				"Input Value": {
+					"type": "Float",
+					"min": 0,
+					"max": 1,
+					"default": 0
+				}
+			}
+		},
+		"setFaderName": {
+			"menu": "",
+			"callback": "setFaderName",
+			"parameters": {
+				"Strip": {
+					"type": "Integer",
+					"min": 1,
+					"max": 8,
+					"default": 1
+				},
+				"Input Value": {
+					"type": "String"
 				}
 			}
 		}
