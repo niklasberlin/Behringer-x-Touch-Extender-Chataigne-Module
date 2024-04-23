@@ -440,6 +440,7 @@ function moduleValueChanged(value) {
         parseInt(value.getParent().name.substring(5, 6)),
         value.get() * 16383
       );
+      updateScribble();
     } else {
       if (value.name == "meter") {
         local.sendChannelPressure(
