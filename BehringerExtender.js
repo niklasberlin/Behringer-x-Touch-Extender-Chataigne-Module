@@ -712,13 +712,6 @@ function sysExEvent(data) {
   //script.log("Sysex Message received, "+data.length+" bytes :");
 }
 
-function setBGColor(stripIndex, ColorIndex) {
-  //needs to be exposed to the userinterface
-  local.values.strips
-    .getChild("Strip " + stripIndex)
-    .displayColor.set(ColorIndex);
-}
-
 function ResetDevice() {
   for (c = 0; c < 8; c++) {
     //script.log("counter: "+counter);
@@ -733,6 +726,48 @@ function ResetDevice() {
     //local.values.strips.getChild("Strip " + (c + 1)).faderValue.set(0);
     local.values.strips.getChild("Strip " + (c + 1)).rotaryValue.set(0);
   }
+}
+
+function colorMax(arr){
+  max = 0;
+  for (i=0; i<arr.length-1; i++){
+    if (arr[i] > max){
+      max = arr[i];
+    }
+  }
+  return max;
+}
+
+function calculateColorIndex(color){
+  red = color[0];
+  green = color[1];
+  blue = color[2];
+
+  max = colorMax(color);
+
+  if (red < 0.2 && green<0.2 && blue<0.2){
+      return 0; //black
+  }
+  //scale colors
+  red = red/max;
+  green = green/max;
+  blue = blue/max;
+  if(red == 1 && green < 0.3 && blue < 0.3){
+    return 1; //red
+  }else if(red < 0.3 && green == 1 && blue < 0.3){
+    return 2; //green
+  }else if(red >= 0.3 && green >= 0.3 && blue < 0.3){
+    return 3; //yellow
+  }else if(red < 0.3 && green <0.3 && blue == 1){
+    return 4; //blue
+  }else if(red >= 0.3 && green < 0.3 && blue >= 0.3){
+    return 5; //magenta
+  }else if(red < 0.3 && green >= 0.3 && blue >= 0.3){
+    return 6; //Cyan
+  }else if(red >= 0.3 && green >= 0.3 && blue >= 0.3){
+    return 7; //white
+  }
+
 }
 
 function setRotaryValue(strip, input) {
@@ -769,4 +804,16 @@ function setEncoderName(strip, input) {
   //rangeEnd=100;
   //inp = map(input,rangeStart,rangeEnd,0,1);
   local.values.strips.getChild("Strip " + strip).encoderName.set(input);
+}
+
+function setDisplayColor(strip, input) {
+  //input will be the correct index
+  local.values.strips.getChild("Strip " + strip).displayColor.setData(input);
+  updateScribleColor();
+}
+
+function setDisplayColorDyn(strip, input) {
+  //input will be of type color, we need to map it
+  col = calculateColorIndex(input);
+  local.values.strips.getChild("Strip " + strip).displayColor.setData(col);
 }

@@ -987,6 +987,46 @@
 					"type": "String"
 				}
 			}
+		},
+		"setDisplayColor": {
+			"menu": "",
+			"callback": "setDisplayColor",
+			"parameters": {
+				"Strip": {
+					"type": "Integer",
+					"min": 1,
+					"max": 8,
+					"default": 1
+				},
+				"Input Value": {
+					"type": "Enum",
+					"options": {
+						"Black": 0,
+						"Red": 1,
+						"Green": 2,
+						"Yellow": 3,
+						"Blue": 4,
+						"Magenta": 5,
+						"Cyan": 6,
+						"White": 7
+					}
+				}
+			}
+		},
+		"setDisplayColorDyn": {
+			"menu": "",
+			"callback": "setDisplayColorDyn",
+			"parameters": {
+				"Strip": {
+					"type": "Integer",
+					"min": 1,
+					"max": 8,
+					"default": 1
+				},
+				"Input Value": {
+					"type": "Color"
+				}
+			}
 		}
 	}
 }
